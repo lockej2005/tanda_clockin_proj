@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+.overlay {
+  width: 80%;
+  max-width: 400px;
+  height: 400px;
+  background-color: rgba(68, 68, 68, 0.9);
+  border: 2px solid white;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-top: -30%;
+  
+  overflow: auto; /* Add scrollable functionality */
+  display: flex;
+  justify-content: center;
+}
+
+.rectangle-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 90%;
+  max-width: 90%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.rectangle-list li {
+  padding: 10px;
+  min-height: 80px;
+  background-color: #fff;
+  border: 2px solid white;
+  color: #111;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Staatliches', cursive;
+  border-radius: 10px;
+}
+
+.rectangle-list li.no-background {
+  background-color: transparent; /* Set the background color to transparent for "Your Previous Shifts" list item */
+  color: white;
+  border: none;
+  font-size: 22px;
+}
+
+.button {
+  width: 75%;
+  max-width: 400px;
+  height: 60px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  font-family: 'Staatliches', cursive;
+  font-size: 30px;
+  color: white;
+}
+
+body {
+  background-color: #0da5e0;
+}
