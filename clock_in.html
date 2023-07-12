@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script> <!-- Add the JavaScript file -->
   </head>
   
   <body class="flex flex-col">
-	<div id="map" class="h-96 bg-cover bg-center" style="background-image: url('https://snazzy-maps-cdn.azureedge.net/assets/8097-wy.png?v=20170626083314')"></div>
+    <div id="map" class="h-96 bg-cover bg-center" style="background-image: url('https://snazzy-maps-cdn.azureedge.net/assets/8097-wy.png?v=20170626083314')"></div>
     <div class="flex flex-col items-center justify-center h-full">
+		
+
       <div class="overlay">
         <ul class="rectangle-list">
-		<li class="no-background">Your Previous Shifts</li>
+          <li class="no-background">Your Previous Shifts</li>
           <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
           <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
           <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
@@ -27,10 +30,15 @@
           <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
           <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
           <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
-	
+          <li>Tuesday 17th July, 2023<br>05:00pm - 08:00pm<br>3hrs $64</li>
         </ul>
       </div>
-      <button class="button">CLOCK IN</button>
+	  <div class="overlay1">
+		<div class="timer" id="timer"></div>
+	  </div>
+	  <div class="clickarea"></div>
+	  
+      <p class="button">CLOCK IN</p>
     </div>
    
     <div class="px-4 py-5">

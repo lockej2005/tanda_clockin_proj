@@ -1,19 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap');
+
 .overlay {
   width: 80%;
   max-width: 400px;
   height: 400px;
+  z-index: 1;
   background-color: rgba(68, 68, 68, 0.9);
   border: 2px solid white;
   border-radius: 20px;
   margin-bottom: 20px;
   margin-top: -30%;
-  
   overflow: auto; /* Add scrollable functionality */
   display: flex;
   justify-content: center;
 }
+.overlay1 {
+    width: 80%;
+    max-width: 400px;
+    height: 400px;
+    z-index: 1;
+    background-color: rgba(68, 68, 68, 0.9);
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-top: -30%;
+    display: none;
+    overflow: auto; /* Add scrollable functionality */
+    justify-content: center;
+  }
 
 .rectangle-list {
   list-style: none;
@@ -33,7 +50,7 @@
   color: #111;
   margin-bottom: 10px;
   text-align: center;
-  font-family: 'Staatliches', cursive;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   border-radius: 10px;
 }
 
@@ -52,11 +69,45 @@
   text-align: center;
   line-height: 40px;
   cursor: pointer;
-  font-family: 'Staatliches', cursive;
-  font-size: 30px;
+  font-family: 'Rubik Dirt', cursive;
+  font-size: 46px;
   color: white;
+  z-index: 1;
 }
-
+#map {
+    z-index: 1;
+}
+.timer {
+    z-index: 2;
+    display: none;
+}
+.clickarea{
+    position: fixed;
+    height: 200%;
+    width: 100%;
+    background-color: #0da5e0;
+    z-index: 0;
+}
 body {
-  background-color: #0da5e0;
+  background-color: none;
 }
+.timer {
+    font-size: 36px;
+    color: white;
+    font-family: 'Staatliches', cursive;
+    margin-top: 10px;
+    display: flex;
+  }
+  
+  .timer.active {
+    animation: timerCountUp 1s infinite;
+  }
+  
+  @keyframes timerCountUp {
+    from {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
