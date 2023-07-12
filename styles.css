@@ -13,7 +13,7 @@
   border-radius: 20px;
   margin-bottom: 20px;
   margin-top: -30%;
-  overflow: auto; /* Add scrollable functionality */
+  overflow: auto; 
   display: flex;
   justify-content: center;
 }
@@ -85,7 +85,7 @@
 }
 
 .rectangle-list li.no-background {
-  background-color: transparent; /* Set the background color to transparent for "Your Previous Shifts" list item */
+  background-color: transparent; 
   color: white;
   border: none;
   font-size: 22px;
