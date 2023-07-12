@@ -28,10 +28,26 @@
     margin-bottom: 20px;
     margin-top: -30%;
     display: none;
-    overflow: auto; /* Add scrollable functionality */
-    justify-content: center;
-  }
+    flex-direction: column;
 
+    justify-content: center;
+}
+.textinput {
+    display: none;
+    height: 20%;
+    margin: 10px;
+    padding: 10px;
+}
+.notes{
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+}
+.timer {
+    z-index: 2;
+    display: none;
+    justify-content: center;
+}
 .rectangle-list {
   list-style: none;
   padding: 0;
@@ -77,10 +93,7 @@
 #map {
     z-index: 1;
 }
-.timer {
-    z-index: 2;
-    display: none;
-}
+
 .clickarea{
     position: fixed;
     height: 200%;
@@ -111,3 +124,20 @@ body {
       transform: scale(1);
     }
   }
+
+.ripple {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(0);
+  animation: rippleEffect 1s;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
