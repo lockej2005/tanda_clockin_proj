@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     var clickArea = document.querySelector('.clickarea');
     var overlay = document.querySelector('.overlay');
@@ -9,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var timerInterval;
     var seconds = 0, minutes = 0, hours = 0;
     var isClicked = false;
+    var timerElement = document.getElementById("timer");
+    var currentEarnings = document.querySelector('.currentEarnings');
+    var earningsInterval;
   
     function startTimer() {
       timerInterval = setInterval(updateTimer, 1000);
@@ -26,7 +31,22 @@ document.addEventListener('DOMContentLoaded', function() {
       hours = 0;
       timerElement.textContent = "00:00:00";
     }
-  
+    function updateEarnings() {
+        var time = timerElement.textContent;
+        var timeArray = time.split(':');
+        var hours = parseInt(timeArray[0]);
+        var minutes = parseInt(timeArray[1]);
+        var seconds = parseInt(timeArray[2]);
+        var payRate = 15
+        
+        var totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        var earnings = totalSeconds * (payRate / 3600);
+        
+        currentEarnings.textContent = '$' + earnings.toFixed(2);
+      }
+      
+      earningsInterval = setInterval(updateEarnings, 1000);
+
     function updateTimer() {
       seconds++;
   
@@ -72,15 +92,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 800);
     }
   
-    // Add a click event listener to the clickarea
-    clickArea.addEventListener('click', function(event) {
+    function handleClick(event) {
       if (!isClicked) {
         overlay.style.display = 'none';
         overlay1.style.display = 'flex';
         textInput.style.display = 'block';
         timer.style.display = 'flex';
         button.textContent = 'CLOCK OUT';
-        clickArea.style.backgroundColor = '#3474eb'; // Set the background color to dark blue
+        clickArea.style.backgroundColor = '#0da5e0'; // Set the background color to dark blue
+        timerElement.style.fontFamily = "Inconsolata"; // Set the font family to "Roboto"
+        
         startTimer(); // Start the timer when clicked
         createRipple(event); // Create the ripple effect
       } else {
@@ -95,6 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
         createRipple(event); // Create the ripple effect
       }
       isClicked = !isClicked;
-    });
+    }
+  
+    // Add a click event listener to the clickarea
+    clickArea.addEventListener('click', handleClick);
+  
+    // Add a click event listener to the button
+    button.addEventListener('click', handleClick);
   });
   
