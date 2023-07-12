@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var hours = parseInt(timeArray[0]);
         var minutes = parseInt(timeArray[1]);
         var seconds = parseInt(timeArray[2]);
-        var payRate = 15
+        var payRate = 23.23
         
         var totalSeconds = hours * 3600 + minutes * 60 + seconds;
         var earnings = totalSeconds * (payRate / 3600);
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.textContent = 'CLOCK OUT';
         clickArea.style.backgroundColor = '#0da5e0'; // Set the background color to dark blue
         timerElement.style.fontFamily = "Inconsolata"; // Set the font family to "Roboto"
-        
+
         startTimer(); // Start the timer when clicked
         createRipple(event); // Create the ripple effect
       } else {
