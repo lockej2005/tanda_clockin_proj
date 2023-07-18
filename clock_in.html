@@ -4,46 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script> <!-- Add the JavaScript file -->
   </head>
   
   <body class="flex flex-col">
-    <div id="map" class="h-96 bg-cover bg-center" style="background-image: url('https://snazzy-maps-cdn.azureedge.net/assets/8097-wy.png?v=20170626083314')"></div>
-    <div class="flex flex-col items-center justify-center h-full">
-		
+    <div id="app">
+      <div id="map" class="h-96 bg-cover bg-center" 
+     style="background-image: url('https://snazzy-maps-cdn.azureedge.net/assets/8097-wy.png?v=20170626083314');">
+</div>
+      <div class="flex flex-col items-center justify-center h-full">
+        
+        <div class="overlay">
+          <ul class="rectangle-list">
+            <li class="no-background"><span style="font-size: 12px;">19th July 2023</span><br>Your Previous Shifts</li>
+            <li v-for="shift in shifts">
+              {{ shift.date }}<br>
+              {{ shift.clock_in }} - {{ shift.clock_out }}<br>
+              <div class="priceSec">{{ shift.price }}</div>
+            </li>
+          </ul>
+        </div>
+        <div class="overlay1">
+          <div class="timer" id="timer"></div>
+          <p class="notes">Notes</p>
+          <input type="text" class="textinput" placeholder="Enter text...">
+          <div class="currentEarnings"></div>
+        </div>
+        <div class="clickarea"></div>
+        <p class="button">CLOCK IN</p>
+      </div>
+     
+      <div class="px-4 py-5">
+        <div id="clocked-in" class="hidden">
+          <h1 class="text-3xl font-bold text-blue-600">
+            Clocked in content
+          </h1>
+        </div>
+      </div>
+    </div>
 
-      <div class="overlay">
-        <ul class="rectangle-list">
-          <li class="no-background"><span style="font-size: 12px;">17th July 2023</span><br>Your Previous Shifts</li>
-		  <li>Thursday 20th July, 2023<br>08:00am - 01:00pm<br><div class="priceSec">$116.15</div></li>
-		  <li>Wednesday 19th July, 2023<br>02:00pm - 06:00pm<br><div class="priceSec">$92.92</div></li>
-		  <li>Tuesday 18th July, 2023<br>09:00am - 12:00pm<br><div class="priceSec">$69.69</div></li>
-		  <li>Monday 17th July, 2023<br>05:00pm - 08:00pm<br><div class="priceSec">$46.46</div></li>
-		  <li>Sunday 16th July, 2023<br>01:00pm - 04:00pm<br><div class="priceSec">$23.23</div></li>
-		  <li>Saturday 15th July, 2023<br>10:00am - 01:00pm<br><div class="priceSec">$23.23</div></li>
-		  <li>Friday 14th July, 2023<br>06:00pm - 08:00pm<br><div class="priceSec">$46.46</div></li>
-		  <li>Thursday 13th July, 2023<br>04:00pm - 06:00pm<br><div class="priceSec">$46.46</div></li>
-		  <li>Wednesday 12th July, 2023<br>09:00am - 01:00pm<br><div class="priceSec">$92.92</div></li>
-		  <li>Tuesday 11th July, 2023<br>02:00pm - 05:00pm<br><div class="priceSec">$69.69</div></li>
-        </ul>
-      </div>
-	  <div class="overlay1">
-		<div class="timer" id="timer"></div>
-		<p class="notes">Notes</p>
-		<input type="text" class="textinput" placeholder="Enter text...">
-		<div class="currentEarnings"></div>
-	  </div>
-	  <div class="clickarea"></div>
-      <p class="button">CLOCK IN</p>
-    </div>
-   
-    <div class="px-4 py-5">
-      <div id="clocked-in" class="hidden">
-        <h1 class="text-3xl font-bold text-blue-600">
-          Clocked in content
-        </h1>
-      </div>
-    </div>
   </body>
 </html>
