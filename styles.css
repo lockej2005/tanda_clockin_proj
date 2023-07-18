@@ -23,19 +23,25 @@
   }
 }
 .overlay1 {
-    width: 80%;
-    max-width: 400px;
-    height: 400px;
-    z-index: 5;
-    background-color: rgba(68, 68, 68, 0.9);
-    border: 2px solid white;
-    border-radius: 20px;
-    font-family: 'Inconsolata', monospace;
-    margin-bottom: 20px;
-    margin-top: -30%;
-    display: none;
-    flex-direction: column;
-    justify-content: flex-start;
+  width: 80%;
+  max-width: 400px;
+  height: 400px;
+  z-index: 5;
+  background-color: rgba(68, 68, 68, 0.9);
+  border: 2px solid white;
+  border-radius: 20px;
+  font-family: 'Inconsolata', monospace;
+  margin-bottom: 20px;
+  margin-top: -10%;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .overlay1 {
+    margin-top: -30%; 
+  }
 }
 .textinput {
     display: none;
