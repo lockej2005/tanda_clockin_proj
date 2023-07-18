@@ -5,36 +5,64 @@ document.addEventListener('DOMContentLoaded', function () {
       shifts: [],
     },
     created: function () {
-      fetch('shifts.json')
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && Array.isArray(data.shifts)) {
-            data.shifts.forEach((shift) => {
-              let [dayName, date, month, year] = shift.date.split(' ');
-              date = date.replace(/(st|nd|rd|th)/, '');
-              let [time, period] = shift.clock_in.split(/\s/);
-              let [hour, minute] = time.split(':');
-              hour = parseInt(hour);
-              minute = parseInt(minute);
-              if (period && period.toLowerCase() === 'pm' && hour !== 12) {
-                hour += 12;
-              } else if (period && period.toLowerCase() === 'am' && hour === 12) {
-                hour = 0;
-              }
-              let newDateStr = `${month} ${date}, ${year} ${hour}:${minute}:00`;
-              shift.dateTime = new Date(Date.parse(newDateStr));
-            });
-            data.shifts.sort((a, b) => b.dateTime - a.dateTime);
-            this.shifts = data.shifts;
-          } else {
-            console.error('Invalid data format in shifts.json');
-          }
-        })
-        .catch((error) => {
-          console.error('Failed to fetch shifts data:', error);
-        });
+      const fetchJSON = () => {
+        fetch('shifts.json')
+          .then((response) => response.json())
+          .then((data) => {
+            if (data && Array.isArray(data.shifts)) {
+              data.shifts.forEach((shift) => {
+                let [dayName, date, month, year] = shift.date.split(' ');
+                date = date.replace(/(st|nd|rd|th)/, '');
+                let [time, period] = shift.clock_in.split(/\s/);
+                let [hour, minute, seconds] = time.split(':');
+                hour = parseInt(hour);
+                minute = parseInt(minute);
+                seconds = parseInt(seconds);
+                if (period && period.toLowerCase() === 'pm' && hour !== 12) {
+                  hour += 12;
+                } else if (period && period.toLowerCase() === 'am' && hour === 12) {
+                  hour = 0;
+                }
+                let newDateStr = `${month} ${date}, ${year} ${hour}:${minute}:${seconds}`;
+                shift.dateTime = new Date(Date.parse(newDateStr));
+              });
+              data.shifts.sort((a, b) => {
+                const dateComparison = new Date(b.dateTime) - new Date(a.dateTime);
+                if (dateComparison !== 0) {
+                  return dateComparison;
+                } else {
+                  const timeA = a.clock_in.split(':');
+                  const timeB = b.clock_in.split(':');
+                  const hourComparison = parseInt(timeB[0]) - parseInt(timeA[0]);
+                  const minuteComparison = parseInt(timeB[1]) - parseInt(timeA[1]);
+                  const secondComparison = parseInt(timeB[2]) - parseInt(timeA[2]);
+    
+                  if (hourComparison !== 0) {
+                    return hourComparison;
+                  } else if (minuteComparison !== 0) {
+                    return minuteComparison;
+                  } else {
+                    return secondComparison;
+                  }
+                }
+              });
+              this.shifts = data.shifts;
+            } else {
+              console.error('Invalid data format in shifts.json');
+            }
+          })
+          .catch((error) => {
+            console.error('Failed to fetch shifts data:', error);
+          });
+      };
+    
+      this.fetchJSON = fetchJSON;
     },
+    
     mounted: function () {
+      setTimeout(() => {
+        this.fetchJSON();
+      }, 100);
       var clickArea = this.$el.querySelector('.clickarea');
       var overlay = this.$el.querySelector('.overlay');
       var overlay1 = this.$el.querySelector('.overlay1');
@@ -49,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var isClicked = false;
       var currentEarnings = this.$el.querySelector('.currentEarnings');
       const ONE_MINUTE = 60;
-      const ONE_DAY = 24;
       const SECONDS_IN_A_DAY = 3600;
       var clockInTime, clockOutTime;
 
@@ -139,7 +166,6 @@ document.addEventListener('DOMContentLoaded', function () {
           button.textContent = 'CLOCK OUT';
           clickArea.style.backgroundColor = '#0da5e0';
           timerElement.style.fontFamily = "Inconsolata";
-
           startTimer();
           createRipple(event);
         } else {
@@ -149,6 +175,9 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log(clockOutTime)
           textInput.style.display = 'none';
           button.textContent = 'CLOCK IN';
+          setTimeout(() => {
+            this.fetchJSON();
+          }, 100);
           clickArea.style.backgroundColor = '';
           stopTimer();
           resetTimer();
@@ -160,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var shiftDuration = Math.floor((clockoutformat - clockinformat) / 1000); // Duration in seconds
           console.log(shiftDuration);
           var shiftCost = (shiftDuration) * (23.23 / SECONDS_IN_A_DAY);
-          
+
 
           var newShift = {
             date: formatDate(clockInTime),
@@ -189,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
       function saveShiftToFile(shift) {
         // Convert the shift to JSON with line breaks and indentation
         var jsonData = JSON.stringify(shift, null, 2);
-      
+
         // Send the shift data to the server
         $.ajax({
           url: 'save-shifts.php',
@@ -204,10 +233,9 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
       }
-      
 
-      clickArea.addEventListener('click', handleClick);
-      button.addEventListener('click', handleClick);
+      clickArea.addEventListener('click', handleClick.bind(this)); // Bind Vue instance as the context for handleClick
+      button.addEventListener('click', handleClick.bind(this)); // Bind Vue instance as the context for handleClick
     },
   });
 });

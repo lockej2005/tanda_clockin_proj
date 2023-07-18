@@ -27,6 +27,48 @@
             "clock_out": "01:40:01",
             "price": "$0.06",
             "dateTime": "2023-07-18T15:39:50.790Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "01:40:50",
+            "clock_out": "01:40:54",
+            "price": "$0.03",
+            "dateTime": "2023-07-18T15:40:50.203Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "01:55:30",
+            "clock_out": "01:55:36",
+            "price": "$0.04",
+            "dateTime": "2023-07-18T15:55:30.434Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "02:36:31",
+            "clock_out": "02:36:35",
+            "price": "$0.02",
+            "dateTime": "2023-07-18T16:36:31.574Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "02:36:48",
+            "clock_out": "02:36:55",
+            "price": "$0.05",
+            "dateTime": "2023-07-18T16:36:48.364Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "02:37:10",
+            "clock_out": "02:37:14",
+            "price": "$0.02",
+            "dateTime": "2023-07-18T16:37:10.595Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "02:39:52",
+            "clock_out": "Invalid DateTime",
+            "price": "$10903248.24",
+            "dateTime": "2023-07-18T16:39:52.567Z"
         }
     ]
 }
