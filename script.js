@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       function handleClick(event) {
         if (!isClicked) {
-          clockInTime = new Date(); // Fix: Use new Date() constructor
+          clockInTime = new Date(); 
           overlay.style.display = 'none';
           overlay1.style.display = 'flex';
           textInput.style.display = 'block';
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
           startTimer();
           createRipple(event);
         } else {
-          clockOutTime = new Date(); // Fix: Use new Date() constructor
+          clockOutTime = new Date(); 
           overlay.style.display = 'flex';
           overlay1.style.display = 'none';
           console.log(clockOutTime)
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var clockinformat = clockInTime.getTime();
           var clockoutformat = clockOutTime.getTime();
           console.log("tetstetsttesst " + clockoutformat);
-          var shiftDuration = Math.floor((clockoutformat - clockinformat) / 1000); // Duration in seconds
+          var shiftDuration = Math.floor((clockoutformat - clockinformat) / 1000); 
           console.log(shiftDuration);
           var shiftCost = (shiftDuration) * (23.23 / SECONDS_IN_A_DAY);
 
@@ -199,7 +199,6 @@ document.addEventListener('DOMContentLoaded', function () {
             dateTime: clockInTime,
           };
 
-          // Save the recorded shift to JSON file
           saveShiftToFile(newShift);
         }
         isClicked = !isClicked;
@@ -210,16 +209,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return date.toLocaleDateString('en-US', options);
       }
 
-      // Replace the formatTime function with Luxon's DateTime formatting
+
       function formatTime(date) {
         return luxon.DateTime.fromJSDate(date).toFormat('HH:mm:ss');
       }
 
       function saveShiftToFile(shift) {
-        // Convert the shift to JSON with line breaks and indentation
         var jsonData = JSON.stringify(shift, null, 2);
 
-        // Send the shift data to the server
         $.ajax({
           url: 'save-shifts.php',
           type: 'POST',
@@ -234,8 +231,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }
 
-      clickArea.addEventListener('click', handleClick.bind(this)); // Bind Vue instance as the context for handleClick
-      button.addEventListener('click', handleClick.bind(this)); // Bind Vue instance as the context for handleClick
+      clickArea.addEventListener('click', handleClick.bind(this)); 
+      button.addEventListener('click', handleClick.bind(this));
     },
   });
 });
