@@ -1,57 +1,32 @@
-[
-    {
-        "date": "Tuesday 11th July, 2023",
-        "clock_in": "02:00pm",
-        "clock_out": "05:00pm",
-        "price": "$69.69"
-      },
-    {
-      "date": "Monday 17th July, 2023",
-      "clock_in": "05:00pm",
-      "clock_out": "08:00pm",
-      "price": "$46.46"
-    },
-    {
-        "date": "Tuesday 18th July, 2023",
-        "clock_in": "09:00am",
-        "clock_out": "12:00pm",
-        "price": "$69.69"
-      },
-    {
-      "date": "Sunday 16th July, 2023",
-      "clock_in": "01:00pm",
-      "clock_out": "04:00pm",
-      "price": "$23.23"
-    },
-    {
-      "date": "Saturday 15th July, 2023",
-      "clock_in": "10:00am",
-      "clock_out": "01:00pm",
-      "price": "$23.23"
-    },
-    {
-      "date": "Friday 14th July, 2023",
-      "clock_in": "06:00pm",
-      "clock_out": "08:00pm",
-      "price": "$46.46"
-    },
-    {
-      "date": "Thursday 13th July, 2023",
-      "clock_in": "04:00pm",
-      "clock_out": "06:00pm",
-      "price": "$46.46"
-    },
-    {
-        "date": "Wednesday 19th July, 2023",
-        "clock_in": "02:00pm",
-        "clock_out": "06:00pm",
-        "price": "$92.92"
-      },
-    {
-      "date": "Wednesday 12th July, 2023",
-      "clock_in": "09:00am",
-      "clock_out": "01:00pm",
-      "price": "$92.92"
-    }
-  ]
-  
+{
+    "shifts": [
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "01:38:23",
+            "clock_out": "01:38:25",
+            "price": "$0.01",
+            "dateTime": "2023-07-18T15:38:23.706Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "01:38:42",
+            "clock_out": "01:38:47",
+            "price": "$0.03",
+            "dateTime": "2023-07-18T15:38:42.366Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "01:38:49",
+            "clock_out": "01:38:51",
+            "price": "$0.01",
+            "dateTime": "2023-07-18T15:38:49.983Z"
+        },
+        {
+            "date": "Wednesday, July 19, 2023",
+            "clock_in": "01:39:50",
+            "clock_out": "01:40:01",
+            "price": "$0.06",
+            "dateTime": "2023-07-18T15:39:50.790Z"
+        }
+    ]
+}
