@@ -104,9 +104,6 @@
   color: white;
   z-index: 1;
 }
-#map {
-    z-index: 1;
-}
 
 .clickarea{
     position: fixed;
