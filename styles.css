@@ -7,7 +7,7 @@
   width: 80%;
   max-width: 400px;
   height: 400px;
-  z-index: 1;
+  z-index: 5;
   background-color: rgba(68, 68, 68, 0.9);
   border: 2px solid white;
   border-radius: 20px;
@@ -17,11 +17,16 @@
   display: flex;
   justify-content: center;
 }
+@media (min-width: 1024px) {
+  .overlay {
+    margin-top: -10%; 
+  }
+}
 .overlay1 {
     width: 80%;
     max-width: 400px;
     height: 400px;
-    z-index: 1;
+    z-index: 5;
     background-color: rgba(68, 68, 68, 0.9);
     border: 2px solid white;
     border-radius: 20px;
@@ -46,7 +51,7 @@
     font-size: 24px;
 }
 .timer {
-    z-index: 2;
+    z-index: 5;
     display: none;
     justify-content: center;
     font-family: 'Inconsolata', monospace;
@@ -102,15 +107,16 @@
   font-family: 'Rubik Dirt', cursive;
   font-size: 46px;
   color: white;
-  z-index: 1;
+  z-index: 5;
 }
 
 .clickarea{
     position: fixed;
-    height: 200%;
+    display: flex;
+    height: 100%;
     width: 100%;
     background-color: #0da5e0;
-    z-index: 0;
+    z-index: 1;
 }
 body {
   background-color: none;
