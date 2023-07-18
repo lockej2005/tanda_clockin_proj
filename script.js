@@ -1,6 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    
     var clickArea = document.querySelector('.clickarea');
     var overlay = document.querySelector('.overlay');
     var overlay1 = document.querySelector('.overlay1');
@@ -13,11 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var isClicked = false;
     var timerElement = document.getElementById("timer");
     var currentEarnings = document.querySelector('.currentEarnings');
-    var earningsInterval;
+    const ONE_MINUTE = 60;
+    const ONE_DAY = 24;
+    const SECONDS_IN_A_DAY = 3600
+
+
   
     function startTimer() {
       timerInterval = setInterval(updateTimer, 1000);
-      timerElement.style.display = "flex"; // Show the timer
+      timerElement.style.display = "flex";
     }
   
     function stopTimer() {
@@ -32,20 +37,25 @@ document.addEventListener('DOMContentLoaded', function() {
       timerElement.textContent = "00:00:00";
     }
     function updateEarnings() {
-        var time = timerElement.textContent;
-        var timeArray = time.split(':');
-        var hours = parseInt(timeArray[0]);
-        var minutes = parseInt(timeArray[1]);
-        var seconds = parseInt(timeArray[2]);
-        var payRate = 23.23
-        
-        var totalSeconds = hours * 3600 + minutes * 60 + seconds;
-        var earnings = totalSeconds * (payRate / 3600);
-        
+      var time = timerElement.textContent;
+      var timeArray = time.split(':');
+      var hours = parseInt(timeArray[0]);
+      var minutes = parseInt(timeArray[1]);
+      var seconds = parseInt(timeArray[2]);
+      const payRate = 23.23
+    
+      var totalSeconds = hours * SECONDS_IN_A_DAY + minutes * ONE_MINUTE + seconds;
+      var earnings = totalSeconds * (payRate / SECONDS_IN_A_DAY);
+    
+      if (isNaN(earnings)) {
+        currentEarnings.textContent = '$0.00';
+      } else {
         currentEarnings.textContent = '$' + earnings.toFixed(2);
       }
-      
-      earningsInterval = setInterval(updateEarnings, 1000);
+    }
+    
+    earningsInterval = setInterval(updateEarnings, 1000);
+    
 
     function updateTimer() {
       seconds++;
@@ -69,24 +79,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     function createRipple(event) {
-      // Create a ripple element
       var ripple = document.createElement("span");
   
-      // Set the ripple class
       ripple.className = "ripple";
-  
-      // Get the click position
+
       var x = event.clientX - event.target.offsetLeft;
       var y = event.clientY - event.target.offsetTop;
   
-      // Set the ripple position
       ripple.style.left = x + "px";
       ripple.style.top = y + "px";
   
-      // Append the ripple to the clickarea
+
       event.target.appendChild(ripple);
   
-      // Remove the ripple element after the animation completes
       setTimeout(function() {
         ripple.remove();
       }, 800);
@@ -99,29 +104,29 @@ document.addEventListener('DOMContentLoaded', function() {
         textInput.style.display = 'block';
         timer.style.display = 'flex';
         button.textContent = 'CLOCK OUT';
-        clickArea.style.backgroundColor = '#0da5e0'; // Set the background color to dark blue
-        timerElement.style.fontFamily = "Inconsolata"; // Set the font family to "Roboto"
+        clickArea.style.backgroundColor = '#0da5e0'; 
+        timerElement.style.fontFamily = "Inconsolata"; 
 
-        startTimer(); // Start the timer when clicked
-        createRipple(event); // Create the ripple effect
+        startTimer(); 
+        createRipple(event); 
       } else {
         overlay.style.display = 'flex';
         overlay1.style.display = 'none';
         textInput.style.display = 'none';
         button.textContent = 'CLOCK IN';
-        clickArea.style.backgroundColor = ''; // Revert to the original background color
-        stopTimer(); // Stop the timer when clicked
-        resetTimer(); // Reset the timer when clicked
-        timerElement.style.display = "none"; // Hide the timer
-        createRipple(event); // Create the ripple effect
+        clickArea.style.backgroundColor = ''; 
+        stopTimer(); 
+        resetTimer(); 
+        timerElement.style.display = "none"; 
+        createRipple(event); 
       }
       isClicked = !isClicked;
     }
   
-    // Add a click event listener to the clickarea
+
     clickArea.addEventListener('click', handleClick);
   
-    // Add a click event listener to the button
+
     button.addEventListener('click', handleClick);
   });
   
