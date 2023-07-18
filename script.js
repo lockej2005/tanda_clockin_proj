@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const currentEarnings = this.$el.querySelector('.currentEarnings')
       const ONE_MINUTE = 60
       const SECONDS_IN_A_DAY = 3600
+      const HOURLY_PAY = 23.23
       let clockInTime, clockOutTime
 
       function startTimer () {
@@ -106,10 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const hours = parseInt(timeArray[0])
         const minutes = parseInt(timeArray[1])
         const seconds = parseInt(timeArray[2])
-        const payRate = 23.23
 
         const totalSeconds = hours * SECONDS_IN_A_DAY + minutes * ONE_MINUTE + seconds
-        const earnings = totalSeconds * (payRate / SECONDS_IN_A_DAY)
+        const earnings = totalSeconds * (HOURLY_PAY / SECONDS_IN_A_DAY)
 
         if (isNaN(earnings)) {
           currentEarnings.textContent = '$0.00'
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log(clockoutformat)
           const shiftDuration = Math.floor((clockoutformat - clockinformat) / 1000)
           console.log(shiftDuration)
-          const shiftCost = (shiftDuration) * (23.23 / SECONDS_IN_A_DAY)
+          const shiftCost = (shiftDuration) * (HOURLY_PAY / SECONDS_IN_A_DAY)
 
           const newShift = {
             date: formatDate(clockInTime),
