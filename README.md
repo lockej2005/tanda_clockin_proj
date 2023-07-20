@@ -18,11 +18,11 @@ Navigate to the cloned directory:
 
 cd tanda_clockin_proj
 
-Build the Docker image: This step may take a few minutes. Replace my-web-app with the name you want to give to your Docker image.
+Build the Docker image: 
 
 docker build -t tanda_clockin_proj 
 
-Run the Docker container: Replace my-web-app with the name you gave to your Docker image.
+Run the Docker container: 
 
 docker run -p 8080:8080 tanda_clockin_proj
 
