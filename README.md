@@ -5,14 +5,25 @@ At many companies, product design is split into different roles: UX, UI, front-e
 Challenge: [https://docs.google.com/document/d/1IhRro5y01gqVZpTR6XIwYcCWboaOKv5DjW-Ce4ZMAp0/edit?usp=sharing](https://docs.google.com/document/d/1IhRro5y01gqVZpTR6XIwYcCWboaOKv5DjW-Ce4ZMAp0/edit?usp=sharing)
 
 -----
-This website uses an API and .PHP to handle get and post methods and formating data to .json. Run these commands
 
-git clone https://github.com/lockej2005/tanda_clockin_proj.git 
+Prerequisites
+Docker installed on the machine (you can include a link to Docker's installation guides: https://docs.docker.com/engine/install/)
+How to Run the Application
 
- python -m http.server 
+Clone the repository:
 
-(open new terminal)
+git clone https://github.com/lockej2005/tanda_clockin_proj
 
-php -S localhost:8000
+Navigate to the cloned directory:
 
-Then visit localhost:8000/clock_in.html
+cd tanda_clockin_proj
+Build the Docker image: This step may take a few minutes. Replace my-web-app with the name you want to give to your Docker image.
+
+docker build -t tanda_clockin_proj 
+
+Run the Docker container: Replace my-web-app with the name you gave to your Docker image.
+
+docker run -p 8080:8080 tanda_clockin_proj
+
+Accessing the Application
+After the Docker container is running, you can access the application by navigating to http://localhost:8080 in your web browser
