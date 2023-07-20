@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     created: function () {
       const fetchJSON = () => {
-        fetch('shifts.json')
+        fetch('fetch-shifts.php')
           .then((response) => response.json())
           .then((data) => {
-            if (data && Array.isArray(data.shifts)) {
+            if (data.error) {
+              console.error('Failed to fetch shifts data:', data.error)
+            } else if (data.shifts && Array.isArray(data.shifts)) {
               data.shifts.forEach((shift) => {
                 let [date, month, year] = shift.date.split(' ')
                 date = date.replace(/(st|nd|rd|th)/, '')
@@ -50,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
               })
               this.shifts = data.shifts
-            } else {
-              console.error('Invalid data format in shifts.json')
             }
           })
           .catch((error) => {
@@ -216,23 +216,15 @@ document.addEventListener('DOMContentLoaded', function () {
         // eslint-disable-next-line no-undef
         return luxon.DateTime.fromJSDate(date).toFormat('HH:mm:ss')
       }
-
       function saveShiftToFile (shift) {
-        const jsonData = JSON.stringify(shift, null, 2)
-
         // eslint-disable-next-line no-undef
-        $.ajax({
-          url: 'save-shifts.php',
-          type: 'POST',
-          data: jsonData,
-          contentType: 'application/json',
-          success: function () {
-            console.log('Shift data saved successfully!')
-          },
-          error: function () {
-            console.error('Failed to save shift data.')
-          }
-        })
+        axios.post('save-shifts.php', shift)
+          .then(function (response) {
+            console.log(response.data)
+          })
+          .catch(function (error) {
+            console.error('Failed to save shift data:', error)
+          })
       }
 
       clickArea.addEventListener('click', handleClick.bind(this))

@@ -1,18 +1,33 @@
 <?php
+$database = 'shifts.db';
+
+$conn = new SQLite3($database);
+if (!$conn) {
+  die('Failed to connect to SQLite database');
+}
+
 $requestPayload = file_get_contents('php://input');
+$shiftData = json_decode($requestPayload, true);
 
-$existingData = file_get_contents('shifts.json');
+$query = "INSERT INTO shifts (date, clock_in, clock_out, price) VALUES (?, ?, ?, ?)";
+$stmt = $conn->prepare($query);
 
-$existingArray = json_decode($existingData, true);
+if (!$stmt) {
+  die('Prepare failed: ' . $conn->lastErrorMsg());
+}
 
-$newData = json_decode($requestPayload, true);
+$stmt->bindValue(1, $shiftData['date']);
+$stmt->bindValue(2, $shiftData['clock_in']);
+$stmt->bindValue(3, $shiftData['clock_out']);
+$stmt->bindValue(4, $shiftData['price']);
 
-$existingArray['shifts'][] = $newData;
+if ($stmt->execute()) {
+  http_response_code(200);
+  echo 'Shift data saved successfully!';
+} else {
+  http_response_code(500);
+  echo 'Failed to save shift data.';
+}
 
-$combinedData = json_encode($existingArray, JSON_PRETTY_PRINT);
-
-file_put_contents('shifts.json', $combinedData);
-
-http_response_code(200);
-echo 'Shifts data saved successfully!';
+unset($conn);
 ?>
