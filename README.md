@@ -17,6 +17,7 @@ git clone https://github.com/lockej2005/tanda_clockin_proj
 Navigate to the cloned directory:
 
 cd tanda_clockin_proj
+
 Build the Docker image: This step may take a few minutes. Replace my-web-app with the name you want to give to your Docker image.
 
 docker build -t tanda_clockin_proj 
