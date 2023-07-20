@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       function handleClick (event) {
+        // apply new styles to the page on click so that user isn't redirected to a new page and instead content on current page is changed
         if (!isClicked) {
           clockInTime = new Date()
           overlay.style.display = 'none'
